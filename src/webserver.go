@@ -13,7 +13,7 @@ func main() {
 	fileServer := http.FileServer(http.Dir("./app"))
 	http.Handle("/", fileServer)
 
-	// Call homeHandler Function in HandleFunc
+	// Call stateHandler Function in HandleFunc
 	http.HandleFunc("/state", stateHandler)
 
 	fmt.Println("Starting Webserver on Port: " + gPort)
@@ -23,9 +23,9 @@ func main() {
 	}
 }
 
-// Handle request on http://localhost:8008/home
+// Handle request on http://localhost:8008/site
 func stateHandler(w http.ResponseWriter, r *http.Request) {
-	// if sub site is not localhost/home
+	// if sub site is not http://localhost/site
 	if r.URL.Path != "/state" {
 		http.Error(w, "404 not found", http.StatusNotFound)
 		return
